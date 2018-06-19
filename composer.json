@@ -1,0 +1,14 @@
+{
+    "name": "mstockenberg/autoloading",
+    "authors": [
+        {
+            "name": "Marten Stockenberg",
+            "email": "MStockenberg@googlemail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "classes\\": "./classes/"
+        }
+    }
+}
