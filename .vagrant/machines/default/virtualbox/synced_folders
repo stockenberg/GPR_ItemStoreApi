@@ -1,1 +1,0 @@
-{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/home/mstockenberg/WebProjects/WebGamers/ItemStoreApi","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/mstockenberg/WebProjects/WebGamers/ItemStoreApi","disabled":false,"__vagrantfile":true}}}
