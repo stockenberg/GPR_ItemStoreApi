@@ -11,3 +11,5 @@
 require_once 'vendor/autoload.php';
 
 $user = new \classes\User();
+
+echo "test";
