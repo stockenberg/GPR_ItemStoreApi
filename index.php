@@ -5,11 +5,10 @@
  * Date: 19.06.18
  * Time: 10:06
  */
-
-
-
+header("Access-Control-Allow-Origin: *");
 require_once 'vendor/autoload.php';
 
-$user = new \classes\User();
+$app = new \classes\App();
+echo json_encode($app->output());
 
-echo "test";
+?>
