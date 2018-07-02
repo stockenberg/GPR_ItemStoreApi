@@ -11,6 +11,7 @@ namespace classes;
 
 class Item
 {
+    use Database;
 
     public function init()
     {
@@ -24,6 +25,7 @@ class Item
         }
     }
 
+
     private function get($id)
     {
         return "Get item by ID";
@@ -31,6 +33,7 @@ class Item
 
     private function getAll()
     {
-        return "Get All Items";
+        $SQL = 'SELECT * FROM items';
+        return Database::get($SQL);
     }
 }

@@ -48,7 +48,7 @@ class User
 
     private function register()
     {
-        return "register user";
+        print_r($_POST);
     }
 
     private function addToCart()

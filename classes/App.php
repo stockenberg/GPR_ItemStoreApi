@@ -32,7 +32,7 @@ class App
 
     public function output() : array
     {
-        return ['status' => 'success|error', 'data' => $this->init()];
+        return ['status' => 'success', 'data' => $this->init()];
     }
 
 }
