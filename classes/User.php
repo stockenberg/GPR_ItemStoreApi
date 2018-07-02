@@ -10,6 +10,7 @@ namespace classes;
 
 class User
 {
+    use Database;
 
     public function init()
     {
@@ -38,7 +39,19 @@ class User
 
     private function login()
     {
-        return "Log user in";
+        $post = json_decode($_POST['data'], true);
+
+        if(!empty($post)){
+            $SQL = 'SELECT * FROM users WHERE email = :email';
+            $execArr = [':email' => $post['username']];
+
+            $res = Database::get($SQL, $execArr);
+
+            if(password_verify($post['password'], $res[0]['password'])){
+                return ['userid' => $res[0]['id']];
+            }
+        }
+        //return "Log user in";
     }
 
     private function logout()
@@ -48,7 +61,20 @@ class User
 
     private function register()
     {
-        print_r($_POST);
+        $post = json_decode($_POST["data"], true);
+        if(!empty($post)){
+            $SQL = "INSERT INTO users (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)";
+            $execArr = [
+                ':firstname' => $post['firstname'],
+                ':lastname' => $post['lastname'],
+                ':email' => $post['email'],
+                ':password' => password_hash($post['password'], PASSWORD_DEFAULT, ['cost' => 12]),
+            ];
+
+            if (Database::set($SQL, $execArr)){
+                return "funzt!";
+            }
+        }
     }
 
     private function addToCart()

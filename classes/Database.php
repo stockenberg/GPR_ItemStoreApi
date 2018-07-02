@@ -52,13 +52,14 @@ trait Database
      * Writes into Database (UPDATE, DELETE, INSERT statements) and gets SQL and ExecArray
      * @param String $SQL
      * @param array $execArr
+     * @return bool
      */
-    public static function set(String $SQL, Array $execArr = [])
+    public static function set(String $SQL, Array $execArr = []) : bool
     {
         self::connect();
         $stmt = self::$db->prepare($SQL);
         try{
-            $stmt->execute($execArr);
+            return $stmt->execute($execArr);
         }catch (\PDOException $e){
             echo $e->getMessage();
         }

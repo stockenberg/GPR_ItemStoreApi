@@ -16,6 +16,9 @@ class App
 
     private function init()
     {
+        session_name('item_store');
+        session_start();
+
         switch ($_GET['case']){
             case 'user':
                 $user = new User();
