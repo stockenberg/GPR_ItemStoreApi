@@ -13,7 +13,7 @@ SELECT * FROM users WHERE firstname = "test";
 SELECT * FROM users WHERE firstname = "test" AND id = 1;
 SELECT * FROM users WHERE firstname = "test" OR id = 1;
 SELECT * FROM users WHERE firstname = "test" OR id = 1 AND lastname = "test2";
-SELECT * FROM users WHERE firstname LIKE '%te%'
+SELECT * FROM users WHERE firstname LIKE '%te%';
 
 /* Multi Table Query */
 SELECT u.*, c.bank 
@@ -26,16 +26,25 @@ WHERE u.currency_id = c.id
 # UPDATE STATEMENT
 
 ```mysql
-UPDATE users SET firstname = "Marten" !! DANGER dont ! do ! that! ARGH!
-UPDATE users SET firstname = "Marten" WHERE id = 1
-UPDATE users SET firstname = "Marten" WHERE id = 1 AND firstname = "value"
+UPDATE users SET firstname = "Marten";
+UPDATE users SET firstname = "Marten" WHERE id = 1;
+UPDATE users SET firstname = "Marten" WHERE id = 1 AND firstname = "value";
 ```
 
 
 # DELETE STATEMENT
 
 ```mysql
-DELETE FROM users !!DANGER !DONT ! DO! THAT!
-DELETE FROM users WHERE id = 1 
-DELETE FROM users WHERE id = 1 AND lastname = "hugo"
+DELETE FROM users WHERE id = 1;
+DELETE FROM users WHERE id = 1 AND lastname = "hugo";
+```
+
+# Backup Database
+```bash
+mysqldump -u root -p database_name > /path/to/file.sql
+```
+
+# import backup
+```bash
+mysql -u root -p target_database < /path/to/import/file
 ```
