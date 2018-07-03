@@ -14,9 +14,13 @@ class User
 
     public function init()
     {
-        switch ($_GET['action']){
+        switch ($_GET['action'] ?? ''){
             case 'login':
                 return $this->login();
+                break;
+
+            case 'getItems':
+                return $this->getItems($_GET['id'] ?? null);
                 break;
 
             case 'logout':
@@ -35,6 +39,17 @@ class User
                 return $this->buy();
                 break;
         }
+    }
+
+    public function getItems(Int $id) : array
+    {
+        $SQL = 'SELECT i.* 
+                FROM item_user AS iu, items AS i 
+                WHERE iu.user_id = :id AND iu.item_id = i.id';
+        $execArr = [':id' => $id];
+
+        $res = Database::get($SQL, $execArr);
+        return $res;
     }
 
     private function login()
@@ -84,7 +99,14 @@ class User
 
     private function buy()
     {
-        return "buy all items in cart";
+       $res = json_decode($_POST['data'], true);
+       if(isset($res['userid']) && $res['userid'] !== null){
+            $SQL = 'INSERT INTO item_user (user_id, item_id) VALUES (:user_id, :item_id)';
+            foreach ($res['cart'] as $index => $item){
+                $execArray = [':user_id' => $res['userid'], ':item_id' => $item['id']];
+                return Database::set($SQL, $execArray);
+            }
+       }
     }
 
 }

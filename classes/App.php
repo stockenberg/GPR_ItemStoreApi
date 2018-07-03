@@ -19,7 +19,7 @@ class App
         session_name('item_store');
         session_start();
 
-        switch ($_GET['case']){
+        switch ($_GET['case'] ?? ''){
             case 'user':
                 $user = new User();
                 return $user->init();
